@@ -1,0 +1,57 @@
+
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,hyperref}
+\title{Counting Addendum for the de Bruijn Sheaf/Homology Framework}
+\author{Generated addendum}
+\date{\today}
+\begin{document}
+\maketitle
+
+\section{Counting de Bruijn cycles}
+
+The number of de Bruijn cycles of order \(n\) over an alphabet of size \(q\) is
+\[
+N(q,n)=\frac{(q!)^{q^{n-1}}}{q^n}.
+\]
+For \(q=2\),
+\[
+N(2,n)=2^{2^{n-1}-n}.
+\]
+This follows by applying the BEST theorem to \(B(q,n-1)\).
+
+\section{Homology}
+
+An Eulerian circuit is a full-support integral 1-cycle:
+\[
+\partial c=0.
+\]
+Thus \(N(q,n)\) counts full-coverage global cyclic sections of the word sheaf.
+
+\section{Pattern-level decomposition}
+
+Let \(\overline B(q,n)=B(q,n)/S_q\). Then
+\[
+N(q,n)=\sum_S |\operatorname{Lift}(S)|,
+\]
+where \(S\) ranges over pattern skeletons in the quotient graph.
+
+\section{Constrained systems}
+
+For constraints \(\mathcal C\),
+\[
+N_{\mathcal C}(q,n)
+=
+\sum_{\text{valid }S}
+|\operatorname{Lift}_{\mathcal C}(S)|.
+\]
+Near-\(G\) defects appear as nonzero boundaries:
+\[
+\partial c\neq0.
+\]
+
+\section{Applications}
+
+DNA/RNA reconstruction, evidence-based prescription, and weather/atmospheric disturbance analysis all fit this form: local sections plus overlap restrictions yield global reconstruction problems, with defects measured by boundaries.
+
+\end{document}

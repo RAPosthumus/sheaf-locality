@@ -1,0 +1,11 @@
+01_research_result_linear_fraction.md
+README.md
+linear_fraction_key_table.md
+linear_fraction_log10_plot.png
+linear_vs_total_fraction_n2_n20.csv
+poster_research_result_linear_fraction.pdf
+primitive_polynomial_research_result.aux
+primitive_polynomial_research_result.log
+primitive_polynomial_research_result.out
+primitive_polynomial_research_result.pdf
+primitive_polynomial_research_result.tex

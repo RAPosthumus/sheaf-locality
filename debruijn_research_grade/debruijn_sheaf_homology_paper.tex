@@ -1,0 +1,255 @@
+
+\documentclass[11pt]{article}
+
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{tikz}
+
+\title{De Bruijn Graphs as Sheaf-Theoretic Locality Structures:\\
+Homology, Symmetry Reduction, and Constructive Lifting}
+\author{Draft generated from the locality--sheaf--homology framework}
+\date{\today}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+\newtheorem{conjecture}{Conjecture}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We reinterpret de Bruijn graphs as locality structures whose edges are gluing constraints between local sections. This gives a sheaf-theoretic view in which de Bruijn cycles are global cyclic sections, exact balanced subgraphs are homological cycles, and near-\(G\) defects are boundaries. The framework naturally supports quotienting by the full alphabet permutation group \(S_q\), producing a pattern-level base graph with fibers of concrete symbol assignments. We explain how this viewpoint refactors Etzion-style cycle constructions and successor-rule methods into homological cycle selection plus cohomological lifting. The binary \(n=6\) case is used as a minimal witness: its short complemented-shift orbit samples all central-pair types and therefore all kernel basin types.
+\end{abstract}
+
+\section{Introduction}
+
+A de Bruijn graph \(B(q,n)\) has vertices \(A^n\), where \(|A|=q\), and edges
+\[
+x_1x_2\cdots x_n \to x_2x_3\cdots x_n a,\qquad a\in A.
+\]
+Each edge is a compatibility condition: the suffix of the first word equals the prefix of the second. Thus the usual shift-and-append rule can be read as a local gluing rule.
+
+This note develops the dictionary
+\[
+\text{locality}\to\text{sheaf gluing}\to\text{homological cycles}\to\text{cohomological lifting}.
+\]
+It also connects this dictionary to known construction paradigms. Etzion gave an algorithm for constructing \(m\)-ary de Bruijn sequences \cite{etzion1986}; later successor-rule frameworks build de Bruijn sequences via simple rules and cycle joining, including approaches based on the pure cycling register (PCR), complemented cycling register (CCR), necklaces, and co-necklaces \cite{gabric2018framework,gabric2016ccr}. We propose that these can be refactored through a quotient pattern graph and a fiber-lifting problem.
+
+\section{Start and end locality}
+
+Let \(w=x_1\cdots x_n\in A^n\). Define
+\[
+\rho_L(w)=x_1\cdots x_{n-1},\qquad
+\rho_R(w)=x_2\cdots x_n.
+\]
+Then
+\[
+u\to v \quad\Longleftrightarrow\quad \rho_R(u)=\rho_L(v).
+\]
+Thus start and end locality are restriction maps. A de Bruijn edge is a valid gluing of two local sections along an overlap of length \(n-1\).
+
+\section{The word sheaf}
+
+Let \(\mathcal I\) be the category of finite intervals of integer positions with inclusions. Define
+\[
+\mathcal F([i,j])=A^{j-i+1}.
+\]
+If \([i,j]\subseteq[r,s]\), the restriction
+\[
+\operatorname{res}^{[r,s]}_{[i,j]}:\mathcal F([r,s])\to \mathcal F([i,j])
+\]
+is the substring map. Compatible local words glue uniquely, so this is the natural sheaf of words on intervals.
+
+A de Bruijn cycle is a cyclic global section that covers all length-\(n\) local sections exactly once.
+
+\section{Homology: cycles and defects}
+
+View \(B(q,n)\) as an oriented 1-complex. Let
+\[
+C_0=\mathbb Z[V],\qquad C_1=\mathbb Z[E].
+\]
+For an edge \(e:u\to v\), define
+\[
+\partial e=v-u.
+\]
+If \(c=\sum a_e e\), then the coefficient of a vertex \(v\) in \(\partial c\) is incoming weight minus outgoing weight. Hence
+\[
+\partial c=0
+\]
+is the circulation condition.
+
+For a subgraph \(H\), define
+\[
+\delta_H(v)=\deg_H^+(v)-\deg_H^-(v).
+\]
+If \(c_H=\sum_{e\in E(H)}e\), then
+\[
+(\partial c_H)(v)= -\delta_H(v).
+\]
+Thus exact balanced structures are cycles and near-\(G\) defects are boundaries.
+
+\section{Kernel basins in the binary case}
+
+For even \(n=2m\), define
+\[
+K_n(x_1\cdots x_n)=x_2\cdots x_{m+1}\,x_m\cdots x_{n-1}.
+\]
+For binary words define adjacent differences
+\[
+d_i=x_i\oplus x_{i+1}.
+\]
+Then
+\[
+D(K_n(x))=(d_2,d_3,\dots,d_m,d_m,d_m,d_{m+1},\dots,d_{n-2}).
+\]
+Thus each kernel step deletes boundary differences and pulls all information toward the center.
+
+\begin{theorem}
+For even \(n=2m\), every binary word reaches after at most \(m-1\) applications of \(K_n\) one of
+\[
+0^n,\quad 1^n,\quad (01)^m,\quad (10)^m.
+\]
+The first two are fixed points and the last two form a 2-cycle.
+\end{theorem}
+
+\begin{proof}
+After \(m-1\) iterations, every adjacent-XOR entry equals the original central difference \(x_m\oplus x_{m+1}\). If this value is 0 the word is constant; if it is 1 the word is alternating. The stated fixed points and 2-cycle follow directly.
+\end{proof}
+
+The basin is determined by the central pair:
+\[
+00\mapsto 0^n,\qquad 11\mapsto 1^n,\qquad 01,10\mapsto (01)^m\leftrightarrow(10)^m.
+\]
+
+\section{Symmetry witness at \(n=6\)}
+
+Define the complemented shift
+\[
+R_n(x_1\cdots x_n)=x_2\cdots x_n\overline{x_1}.
+\]
+Then
+\[
+R_n^n=C,\qquad R_n^{2n}=I.
+\]
+At \(n=6\), the short orbit
+\[
+001100\to011001\to110011\to100110\to001100
+\]
+contains central pairs \(11,10,00,01\). Hence it samples all basin types. At \(n=10\), the analogous orbit
+\[
+0011001100\to0110011001\to1100110011\to1001100110
+\]
+does the same. These orbits are finite symmetry witnesses for the local basin observable.
+
+\section{\(S_q\)-quotient and pattern sheaf}
+
+Before arithmetic is added, alphabet symbols are interchangeable. The graph \(B(q,n)\) is equivariant under the full permutation group \(S_q\). The quotient is the set of equality patterns. For example,
+\[
+AABC\mapsto aabc,\qquad BBDA\mapsto aabc.
+\]
+A pattern with \(r\) equality blocks has fiber size
+\[
+(q)_r=q(q-1)\cdots(q-r+1).
+\]
+So a concrete word decomposes as
+\[
+\text{word}=\text{pattern}+\text{injective symbol assignment}.
+\]
+This defines a quotient or pattern sheaf \(\mathcal P_q\), with a map
+\[
+\mathcal F\to\mathcal P_q.
+\]
+
+\section{Cohomological lifting}
+
+A pattern skeleton is a cycle in the quotient pattern graph. To lift it to a concrete de Bruijn cycle, one must choose compatible symbol assignments in fibers. Around a closed pattern cycle, the transition constraints may have nontrivial monodromy. Trivial monodromy means the lift exists; nontrivial monodromy is the obstruction.
+
+Thus construction decomposes as:
+\[
+\text{pattern cycle}+\text{fiber lift}=\text{concrete de Bruijn cycle}.
+\]
+This is a cohomological lifting problem.
+
+\section{Impact on Etzion-style constructions}
+
+Etzion-style \(m\)-ary construction works directly with concrete cycles. The sheafified formulation refactors it:
+\begin{enumerate}[label=\arabic*.]
+\item Build or classify cycles in the quotient pattern graph.
+\item Compute fiber monodromy.
+\item Lift only obstruction-free skeletons.
+\item Join cycles homologically while preserving liftability.
+\end{enumerate}
+This offers compression. For example, for a 4-letter alphabet at \(n=10\), the concrete graph has \(4^{10}=1{,}048{,}576\) vertices, while the equality-pattern quotient has \(43{,}947\) pattern nodes.
+
+\section{Successor rules as local extension morphisms}
+
+A successor rule is a function
+\[
+f:A^n\to A
+\]
+that chooses the next symbol. It defines
+\[
+T_f(x_1\cdots x_n)=x_2\cdots x_n f(x_1\cdots x_n).
+\]
+Equivalently, it selects one outgoing edge at every vertex. Let \(c_f\) be the sum of selected edges. Correctness has two parts:
+\[
+\partial c_f=0
+\]
+and the selected functional graph is connected as one directed cycle. Cycle joining repairs the second condition after the first creates a cycle cover.
+
+In the quotient framework, a successor rule becomes
+\[
+\text{pattern successor rule}+\text{fiber lift}.
+\]
+This cleanly separates combinatorial skeleton selection from symbol-level consistency.
+
+\section{Applications}
+
+\paragraph{DNA/RNA reconstruction.}
+Fragments are local sections; overlaps are restriction maps; the genome or transcript is a global section. Sequencing errors or missing coverage appear as gluing defects.
+
+\paragraph{Evidence-based prescription.}
+Patient states, treatment histories, and side-effect profiles can be modeled as local sections. A treatment plan is a path or cycle through admissible transitions; adverse effects are boundary or obstruction signals.
+
+\paragraph{Weather and atmospheric disturbances.}
+Local sensor windows are sections. Reconstruction of a global atmospheric state requires consistent gluing. Noise or disturbance appears as nonzero boundary.
+
+\section{Conclusion}
+
+The framework identifies de Bruijn construction as:
+\[
+\text{homological cycle selection}+\text{cohomological obstruction cancellation}.
+\]
+It generalizes start/end locality into restriction maps, reframes exact and near-\(G\) graphs as cycles and boundaries, and provides a quotient-sheaf scaffold for constructing de Bruijn cycles over larger alphabets.
+
+\begin{thebibliography}{9}
+
+\bibitem{etzion1986}
+T. Etzion.
+\newblock An algorithm for constructing m-ary de Bruijn sequences.
+\newblock 1986. Available via Technion author archive.
+
+\bibitem{gabric2018framework}
+D. Gabric, J. Sawada, A. Williams, and D. Wong.
+\newblock A framework for constructing de Bruijn sequences via simple successor rules.
+\newblock \emph{Discrete Mathematics}, 2018.
+
+\bibitem{gabric2016ccr}
+D. Gabric and J. Sawada.
+\newblock A de Bruijn sequence construction by concatenating cycles of the complemented cycling register.
+\newblock 2016.
+
+\bibitem{mitchell1996}
+C. J. Mitchell, T. Etzion, and K. G. Paterson.
+\newblock A method for constructing decodable de Bruijn sequences.
+\newblock \emph{IEEE Transactions on Information Theory}, 1996.
+
+\end{thebibliography}
+
+\end{document}

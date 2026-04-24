@@ -1,0 +1,13 @@
+01_counting_homology_BEST.md
+02_pattern_level_counting_decomposition.md
+03_constrained_systems_counting.md
+04_paper_insert_section.tex
+05_references.md
+README.md
+count_debruijn_cycles.py
+counting_addendum.aux
+counting_addendum.log
+counting_addendum.out
+counting_addendum.pdf
+counting_addendum.tex
+debruijn_cycle_counts_q2_q3_q4_n1_n7.csv

@@ -1,0 +1,59 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,booktabs,hyperref}
+\title{Primitive Polynomials as a Negligible Linear Slice of the Binary de Bruijn Space}
+\author{Research addendum}
+\date{\today}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Primitive polynomials over \(\mathrm{GF}(2)\) generate maximal-length LFSR sequences of period \(2^n-1\). After the usual zero-state insertion/modification, these give a structured family of binary de Bruijn cycles. We compare this linear-derived family with the total number of binary de Bruijn cycles and show that its fraction is bounded by a super-exponentially small quantity. In the sheaf--homology framework, primitive-polynomial constructions are linear global sections inside a vastly larger nonlinear global-section space.
+\end{abstract}
+
+\section{Counts}
+
+The number of primitive polynomials of degree \(n\) over \(\mathrm{GF}(2)\) is
+\[
+P(n)=\frac{\varphi(2^n-1)}{n}.
+\]
+The number of binary de Bruijn cycles of order \(n\) is
+\[
+D(n)=2^{2^{n-1}-n}.
+\]
+Thus the fraction of primitive-polynomial-derived cycles is bounded by
+\[
+F(n)\le \frac{P(n)}{D(n)}
+=
+\frac{\varphi(2^n-1)/n}{2^{2^{n-1}-n}}.
+\]
+Since \(\varphi(2^n-1)\le 2^n-1<2^n\),
+\[
+F(n)\le \frac{2^{2n-2^{n-1}}}{n}.
+\]
+Therefore \(F(n)\to0\) super-exponentially.
+
+\section{Interpretation}
+
+A primitive polynomial gives a linear recurrence and therefore a linear global section of the word sheaf. The full de Bruijn space contains all global cyclic sections satisfying full coverage. Hence
+\[
+\text{primitive-polynomial-derived cycles}
+\subset
+\text{linear global sections}
+\subset
+\text{all de Bruijn cycles}.
+\]
+The asymptotic bound shows that almost all de Bruijn cycles are nonlinear.
+
+\section{Homology}
+
+A de Bruijn cycle is a full-support integral 1-cycle
+\[
+\partial c=0.
+\]
+Primitive-polynomial-derived cycles are those satisfying an extra linear recurrence. Thus primitive polynomials describe a small algebraically constrained region of the full integral cycle space.
+
+\section{Conclusion}
+
+Primitive polynomials provide efficient and elegant algebraic generators, but they do not represent the full de Bruijn space. The sheaf--homology framework explains this by distinguishing linear global sections from the vastly larger nonlinear global-section regime.
+\end{document}
