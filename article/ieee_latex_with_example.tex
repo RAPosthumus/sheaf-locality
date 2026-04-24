@@ -1,0 +1,53 @@
+
+\documentclass[conference]{IEEEtran}
+
+\usepackage{amsmath,amssymb}
+
+\title{De Bruijn Graphs, Sheaf Structures, Homology, and Error-Correcting Codes}
+\author{\IEEEauthorblockN{R.A. Posthumus}}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We connect de Bruijn graphs with sheaf theory, homology, and coding theory.
+Errors are interpreted as boundary defects and correction as restoring global consistency.
+\end{abstract}
+
+\section{Framework}
+Locality induces overlaps, overlaps define a sheaf, and balanced structures satisfy $\partial c=0$.
+
+\section{Error-Correcting Interpretation}
+Errors correspond to violations of locality:
+\[
+\partial c \neq 0
+\]
+
+\section{Worked Example: Hamming Code (7,4)}
+
+Parity check matrix:
+\[
+H =
+\begin{bmatrix}
+1&0&1&0&1&0&1\\
+0&1&1&0&0&1&1\\
+0&0&0&1&1&1&1
+\end{bmatrix}
+\]
+
+Syndrome:
+\[
+s = Hx^T
+\]
+
+Interpretation:
+\begin{itemize}
+\item valid codeword: $\partial c = 0$
+\item error: $\partial c \neq 0$
+\item correction: restore $\partial c = 0$
+\end{itemize}
+
+\section{Conclusion}
+Coding theory corresponds to restoring consistency in a sheaf.
+
+\end{document}
